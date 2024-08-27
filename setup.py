@@ -19,7 +19,7 @@ setup(
         # Indicate who your project is intended for
         "Intended Audience :: Developers",
         # Pick your license as you wish (should match "license" above)
-        "License :: OSI Approved :: Apache-2.0",
+        "License :: OSI Approved :: Apache Software License",
         # Specify the Python versions you support here. In particular, ensure
         # that you indicate whether you support Python 2, Python 3 or both.
         "Programming Language :: Python :: 3.8",
@@ -31,5 +31,5 @@ setup(
         "Topic :: Utilities",
     ],
     install_requires=["fitz"],
-    entry_points={"console_scripts": ["cloudquicklabs1 = src.main:main"]},
+    entry_points={"console_scripts": ["pdfhextract = pdfhextract.core:main"]},
 )
