@@ -6,9 +6,9 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-
 class PdfHighlightExtractor:
-    def _parse_highlight(self,
+    def _parse_highlight(
+        self,
         annot: fitz.Annot,
         wordlist: List[Tuple[float, float, float, float, str, int, int, int]],
     ) -> str:
@@ -64,15 +64,23 @@ class PdfHighlightExtractor:
                     highlights += self.read_one_file(filepath)
                     self.serialize_highlights_per_file(highlights, root, filepath)
 
-    def serialize_highlights_per_file(self, highlights:List[str], root:str, filepath:str):
-        base_path = os.path.join(root, f'highlights/')
-        fid = os.path.join(base_path, f'{os.path.basename(filepath).split(".pdf")[0]}.md')
+    def serialize_highlights_per_file(
+        self, highlights: List[str], root: str, filepath: str
+    ):
+        base_path = os.path.join(root, f"highlights/")
+        fid = os.path.join(
+            base_path, f'{os.path.basename(filepath).split(".pdf")[0]}.md'
+        )
         if not os.path.exists(base_path):
             os.mkdir(base_path)
         with open(fid, "w+") as f:
             f.write("\n".join(highlights))
 
 
-if __name__ == "__main__":
+def main(input_dir: str):
     hex = PdfHighlightExtractor()
-    hex.read_directory("Pose/")
+    hex.read_directory(input_dir)
+
+
+if __name__ == "__main__":
+    main("Pose/")
