@@ -73,7 +73,7 @@ class PdfHighlightExtractor:
         )
         if not os.path.exists(base_path):
             os.mkdir(base_path)
-        with open(fid, "w+") as f:
+        with open(fid, "w") as f:
             f.write("\n".join(highlights))
 
 
