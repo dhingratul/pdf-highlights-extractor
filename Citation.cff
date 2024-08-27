@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Dhingra"
+  given-names: "Atul"
+title: "pdfhextractor: Extract Highlights from PDFs"
+version: 0.1.1
+date-released: 2024-08-26
+url: "https://github.com/dhingratul/pdf-highlights-extractor"
