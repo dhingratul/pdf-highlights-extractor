@@ -55,6 +55,7 @@ class PdfHighlightExtractor:
         Returns:
             A list of all extracted highlights from all PDF files in the directory.
         """
+        all_highlights = []
         for root, _, files in os.walk(path_to_directory):
             for file in files:
                 highlights = []
@@ -62,7 +63,9 @@ class PdfHighlightExtractor:
                 if file.endswith(".pdf"):
                     filepath = os.path.join(root, file)
                     highlights += self.read_one_file(filepath)
+                    all_highlights.extend(highlights)
                     self.serialize_highlights_per_file(highlights, root, filepath)
+        return all_highlights
 
     def serialize_highlights_per_file(
         self, highlights: List[str], root: str, filepath: str
@@ -79,8 +82,9 @@ class PdfHighlightExtractor:
 
 def main(input_dir: str):
     hex = PdfHighlightExtractor()
-    hex.read_directory(input_dir)
+    highlights = hex.read_directory(input_dir)
+    return highlights
 
 
 if __name__ == "__main__":
-    main("Pose/")
+    print(main("pdfhextract/tests/test_data/pose/"))
