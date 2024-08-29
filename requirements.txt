@@ -1,2 +1,2 @@
 pytest==8.3.2
-fitz
+PyMuPDFb==1.24.9
