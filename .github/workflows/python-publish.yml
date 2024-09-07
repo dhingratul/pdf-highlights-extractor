@@ -1,7 +1,8 @@
 name: Upload Python Package to PyPI
 
 on:
-  workflow_dispatch:
+  release:
+    types: [created]
 
 jobs:
     python-build-n-publish:
@@ -14,6 +15,15 @@ jobs:
               uses: actions/setup-python@v1
               with:
                 python-version: 3.11
+
+            - name: Install dependencies
+              run: pip install -r requirements.txt
+
+            - name : Install black
+              run: pip install black
+
+            - name: Run black
+              run: black .
 
             - name: Install dependencies
               run: |
