@@ -9,3 +9,7 @@
 pdf-highlights-extractor
 ------------------------
 Extract Highlights from PDFs
+
+Documentation: https://pdfhextractor.readthedocs.io
+
+Streamlit Application: https://pdfhextractor.streamlit.app/
