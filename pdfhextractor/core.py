@@ -6,6 +6,25 @@ import logging
 logger = logging.getLogger(__name__)
 
 
+def main(input_dir: str):
+    hex = PdfHighlightExtractor()
+    highlights = hex.read_directory(input_dir)
+    return highlights
+
+
+def extract_highlights_from_file(input_file: str):
+    logger.info(f"Reading file from {input_file}")
+    hex = PdfHighlightExtractor()
+    highlights = hex.read_one_file(input_file)
+    return highlights
+
+
+def extract_highlights_from_doc(input_doc):
+    hex = PdfHighlightExtractor()
+    highlights = hex.process_one_file(input_doc)
+    return highlights
+
+
 class PdfHighlightExtractor:
     def _parse_highlight(
         self,
@@ -83,25 +102,6 @@ class PdfHighlightExtractor:
             os.mkdir(base_path)
         with open(fid, "w") as f:
             f.write("\n".join(highlights))
-
-
-def main(input_dir: str):
-    hex = PdfHighlightExtractor()
-    highlights = hex.read_directory(input_dir)
-    return highlights
-
-
-def extract_highlights_from_file(input_file: str):
-    hex = PdfHighlightExtractor()
-    highlights = hex.read_one_file(input_file)
-    return highlights
-
-
-def extract_highlights_from_doc(input_doc):
-    hex = PdfHighlightExtractor()
-    highlights = hex.process_one_file(input_doc)
-    return highlights
-
 
 if __name__ == "__main__":
     print(main("pdfhextract/tests/test_data/pose/"))
