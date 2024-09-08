@@ -1,5 +1,5 @@
 import unittest
-from pdfhextract.core import PdfHighlightExtractor
+from pdfhextractor.core import PdfHighlightExtractor
 
 
 class TestPdfHighlightExtractor(unittest.TestCase):

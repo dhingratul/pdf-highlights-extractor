@@ -36,12 +36,17 @@ class PdfHighlightExtractor:
             annot = annot.next
         return highlights
 
-    def read_one_file(self, filepath: str) -> List:
-        doc = fitz.open(filepath)
-
+    def process_one_file(self, doc):
         highlights = []
         for page in doc:
             highlights += self.handle_page(page)
+
+        return highlights
+
+    def read_one_file(self, filepath: str) -> List:
+        doc = fitz.open(filepath)
+
+        highlights = self.process_one_file(doc)
 
         return highlights
 
@@ -83,6 +88,18 @@ class PdfHighlightExtractor:
 def main(input_dir: str):
     hex = PdfHighlightExtractor()
     highlights = hex.read_directory(input_dir)
+    return highlights
+
+
+def extract_highlights_from_file(input_file: str):
+    hex = PdfHighlightExtractor()
+    highlights = hex.read_one_file(input_file)
+    return highlights
+
+
+def extract_highlights_from_doc(input_doc):
+    hex = PdfHighlightExtractor()
+    highlights = hex.process_one_file(input_doc)
     return highlights
 
 
